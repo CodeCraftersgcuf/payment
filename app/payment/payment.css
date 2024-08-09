@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.or-sec {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center; /* Ensure text alignment in the center */
+  }
+
+  .or-sec::before,
+  .or-sec::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 1px solid #0000005e; /* Line style */
+    width: 43%; /* Line width */
+  }
+
+  .or-sec::before {
+    left: 8px;
+    right: 50%; /* Adjust to create space */
+    margin-right: 10px; /* Space between line and text */
+  }
+
+  .or-sec::after {
+    left: 53%; /* Adjust to create space */
+    right: 0;
+    margin-left: 10px; /* Space between line and text */
+  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
