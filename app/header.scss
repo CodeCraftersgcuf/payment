@@ -57,7 +57,7 @@
   
 
 header{
-    width: 85%;
+    width: 100%;
     margin: auto;
     border:1px solid rgb(77, 77, 77);
     border-radius: 0 0px 20px 20px;
@@ -117,6 +117,7 @@ header{
             font-weight: 500;
             font-size: 12px;
         }
+        
     }
     p{
         padding-left: 5%;
@@ -124,7 +125,7 @@ header{
         font-weight: 700;
     }   
 }
-.example05 a {
+.example05 a span {
     @include hover-underline('slide', 'left-in-right');
   }
 .cart{

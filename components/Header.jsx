@@ -7,14 +7,18 @@ import { FaSearch } from "react-icons/fa";
 import { SlBag } from "react-icons/sl";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
-import CartModal from "./CartModal";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import Cart from "./Cart";
+import { useSelector } from "react-redux";
+import { modalActions } from "@/store/openModel";
+import { useDispatch } from "react-redux";
+
 
 
 const Header = () => {
-  const cartModal = useRef()
+  const dispatch = useDispatch()
+  const items = useSelector((state) => state.itemsFn.items)
+  const stateMessage = useSelector((state) => state.itemsFn.message)
   const router = useRouter()
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -33,6 +37,10 @@ const Header = () => {
       setIsScrolled(false);
     }
   };
+
+  const showCartModal = () => {
+    dispatch(modalActions.openModal())
+  }
 
   return (
     <>
@@ -58,13 +66,12 @@ const Header = () => {
           </div>
           <div>
             <FaSearch />
-            <SlBag className="cart" />
+            <SlBag onClick={showCartModal} className="cart" />
             <p className="p">1</p>
             <RxHamburgerMenu color="white" className="burger" />
           </div>
         </div>
       </header>
-      <Cart />
     </>
   );
 };

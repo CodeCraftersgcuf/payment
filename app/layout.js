@@ -7,10 +7,10 @@
 import { Inter } from 'next/font/google';
 // import { useGSAP } from '@gsap/react';
 
-// import Header from '@/components/Header';
-
-// import './globals.css';
-// import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import ReduxProviderWrapper from '@/components/ReduxProviderWrapper';
+import './globals.css';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -38,11 +38,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body className={inter.className}>
-    
-        <div id="smooth-wrapper">
-          <div id="smooth-content">{children}</div>
-        </div>
-
+        <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
       </body>
     </html>
   );
