@@ -23,8 +23,9 @@ const ExtraItems = ({ addItem }) => {
     const [recommended, setRecommended] = useState(true);
     const router = useRouter()
 
-    function handleNavigateToDetails() {
-        return router.push('/product-details')
+    function handleNavigateToDetails(product) {
+        console.log(product)
+        return router.push('/product-details?id=' + product.id)
     }
 
     return (
@@ -46,7 +47,7 @@ const ExtraItems = ({ addItem }) => {
                 </div>
 
                 <div className='grid p-6 sm:grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-                {DUMMY_ITEMS.map((product, index) => (
+                    {DUMMY_ITEMS.map((product, index) => (
                         <SwiperSlide key={index}>
                             <div
                                 className="slider-items"
@@ -55,7 +56,10 @@ const ExtraItems = ({ addItem }) => {
                             // }
                             >
                                 <div className="slider-item">
-                                    <div className="item-image-box">
+                                    <div
+                                        className="item-image-box"
+                                        onClick={() => handleNavigateToDetails(product)}
+                                    >
                                         <Swiper
                                             className="imageSwiper"
                                             cssMode={true}
@@ -72,8 +76,7 @@ const ExtraItems = ({ addItem }) => {
                                             {product.image.map((image, imgIndex) => (
                                                 <SwiperSlide className="imageSlide" key={imgIndex}>
                                                     <img
-                                                        onClick={handleNavigateToDetails}
-                                                        className="item-image hover:cursor-pointer"
+                                                        className="item-image"
                                                         src={image}
                                                         alt={image.alt}
                                                     />

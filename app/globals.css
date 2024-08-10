@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -10,7 +11,7 @@
   --fullGrid: 1 / 1 / -1 / -1;
 
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 * {
@@ -19,11 +20,20 @@
 
 body {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: Inter, Helvetica, sans-serif !important;
   color: #868484;
   background-color: #000000;
   margin: 0;
   padding: 0;
+}
 
+.added-toast {
+  /* background: white;
+  color: black;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px; */
+  z-index: 150;
 }
 
 .separator {
@@ -48,7 +58,7 @@ body {
   position: relative;
   overflow: visible;
 
-  >.swiper-button-prev {
+  > .swiper-button-prev {
     top: 50% !important;
   }
 }
@@ -87,7 +97,7 @@ body {
     overflow: hidden;
     border-radius: 30px;
 
-    >div {
+    > div {
       position: relative;
     }
 
@@ -110,7 +120,7 @@ body {
       &:hover {
         height: 12px;
         width: 12px;
-        outline: 15px solid rgba(255, 255, 255, .4);
+        outline: 15px solid rgba(255, 255, 255, 0.4);
         transition: outline 0.5s;
       }
     }
@@ -191,7 +201,9 @@ body {
 .swiper-part {
   margin-left: calc(35% - 40px);
 }
-
+.swiper-wrapper {
+  padding-left: 50px;
+}
 .swiper-button-next,
 .swiper-button-prev {
   background-color: rgba(31, 31, 31, 0.5);
@@ -214,13 +226,13 @@ body {
   left: 60px;
   top: 50%;
 
-  >svg {
+  > svg {
     margin-left: 10px;
     font-size: 18px;
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 19px;
     left: 16px;
@@ -236,7 +248,7 @@ body {
     transition: all 0.5s;
     transform: scale(1.1);
 
-    >svg {
+    > svg {
       margin-left: 8px;
       transition: margin-left 0.5s;
     }
@@ -253,13 +265,13 @@ body {
   right: 60px;
   top: 50%;
 
-  >svg {
+  > svg {
     margin-left: 11px;
     font-size: 18px;
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 19px;
     right: 17px;
@@ -275,7 +287,7 @@ body {
     transition: all 0.5s;
     transform: scale(1.1);
 
-    >svg {
+    > svg {
       margin-left: 13px;
       transition: margin-left 0.5s;
     }
@@ -342,7 +354,7 @@ body {
   right: -50px;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 14px;
     left: 10px;
@@ -358,7 +370,7 @@ body {
     transition: all 0.5s;
     transform: scale(1.1);
 
-    >svg {
+    > svg {
       margin-left: 8px;
       transition: margin-left 0.5s;
     }
@@ -380,14 +392,24 @@ body {
     z-index: 100;
     transition: width 0.5s;
   } */
-
 }
-
+.bgCover {
+  border: 1px solid rgb(77, 77, 77);
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  position: absolute;
+  z-index: -100;
+  /* bottom: 0; */
+}
+.footer-main {
+  position: relative;
+}
 .imageSwiper .swiper-button-prev {
   left: -50px;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 14px;
     left: 13px;
@@ -403,7 +425,7 @@ body {
     transition: all 0.5s;
     transform: scale(1.1);
 
-    >svg {
+    > svg {
       margin-left: 8px;
       transition: margin-left 0.5s;
     }
@@ -458,12 +480,61 @@ body {
     display: none !important;
   }
 }
+.links div a {
+  font-weight: 400 !important;
+  font-size: 12px;
+  display: block;
+  line-height: 24px;
+  text-decoration: none;
+  color: hsl(0deg 0% 96% / 80%);
+  position: relative;
+  max-width: fit-content; /* Ensure positioning context for ::after */
+}
 
+.links div a::after {
+  content: ""; /* Creates an empty pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Position the line at the bottom of the <a> tag */
+  width: 0; /* Initial width is 0, so it's hidden */
+  height: 2px; /* Thickness of the underline */
+  background-color: white; /* Color of the underline */
+  transition: width 0.3s ease; /* Animation duration and easing */
+}
+.form-heading {
+  font-family: "Syncopate", sans-serif !important;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.3rem;
+}
+.input-form {
+  background-color: transparent;
+  padding: 15px 5px;
+  color: #707070;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: none;
+  margin-bottom: 20px;
+}
+
+.links div a:hover::after {
+  color: white;
+  width: 100%;
+}
+.copyRight .footer-last ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+.copyRight .footer-last ul li {
+  font-size: 8px;
+  font-weight: normal;
+  margin-left: 10px;
+}
 /* Footer Css */
 #footer {
   width: 100%;
   margin: auto;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -472,25 +543,43 @@ body {
   background-color: #131212;
   z-index: 10;
   font-weight: 500;
-  padding-left: 70px;
-  padding-right: 70px;
+  /* padding-left: 70px;
+  padding-right: 70px; */
 
-  >div {
-    width: 14%;
+  > div {
+    width: 60%;
     min-width: 200px;
-    height: 250px;
+    min-height: 250px;
 
     h4 {
       padding: 15px 0;
       color: #fff;
     }
-
     a {
+      font-weight: 400 !important;
       font-size: 11px;
       display: block;
-      padding: 5px 0;
       text-decoration: none;
-      color: rgb(185, 185, 185);
+      color: hsl(0deg 0% 96% / 80%);
+      position: relative;
+      max-width: fit-content; /* Ensure positioning context for ::after */
+    }
+
+    a::after {
+      content: ""; /* Creates an empty pseudo-element */
+      position: absolute;
+      left: 0;
+      bottom: 0; /* Position the line at the bottom of the <a> tag */
+      width: 0; /* Initial width is 0, so it's hidden */
+      height: 2px; /* Thickness of the underline */
+      background-color: white; /* Color of the underline */
+      transition: width 0.3s ease; /* Animation duration and easing */
+    }
+
+    a:hover::after {
+      color: white;
+      width: 100%;
+      /* Expands the width of the underline to full width on hover */
     }
 
     &:last-of-type {
@@ -529,7 +618,6 @@ body {
       }
     }
   }
-
 }
 
 .copyRight {
@@ -543,7 +631,7 @@ body {
   align-items: center;
   padding-top: 20px;
 
-  span>p {
+  span > p {
     display: inline-block;
     cursor: pointer;
     color: #707070;
@@ -552,12 +640,11 @@ body {
 
 .icons {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  width: 400px;
-  justify-content: space-between;
+  /* width: 400px; */
+  justify-content: start;
+  gap: 10px;
   margin-top: 10px;
-
 }
 
 .footerIcon {
@@ -567,7 +654,7 @@ body {
   font-size: 40px;
   background-color: transparent;
   color: #ffffff;
-  border-radius: 40%;
+  border-radius: 50%;
   cursor: pointer;
 
   &:hover {
@@ -582,7 +669,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    >div {
+    > div {
       width: 70%;
       margin: 15px auto;
       border: 2px solid #575656;
@@ -615,43 +702,56 @@ body {
     .icons {
       justify-content: center;
     }
-
   }
-
 }
-
 @media screen and (max-width: 570px) {
-  .footer-last{
-      gap: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      /* // flex-direction: column;  */
+  .footer-last {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* // flex-direction: column;  */
   }
-  .copyRight{
-      padding-bottom: 100px;
+  .copyRight {
+    padding-bottom: 100px;
   }
 }
-@media screen and (max-width:426px){
-  .preFooter >div{
-      left: 25%!important;
+@media screen and (max-width: 426px) {
+  .preFooter > div {
+    left: 25% !important;
   }
-  #footer > div h4{
-      padding-left: 25px;
+  #footer > div h4 {
+    padding-left: 25px;
   }
-  .footer-div-h4{
-      padding-left: 0px !important;
+  .footer-div-h4 {
+    padding-left: 0px !important;
   }
   .swiper-slide {
-      /* Ensure Swiper slide has appropriate styling */
-      display: flex!important;
-      justify-content: center!important;
-    }
+    /* Ensure Swiper slide has appropriate styling */
+    display: flex !important;
+    justify-content: center !important;
+  }
 }
-@media screen and (max-width:320px){
-  .product-page-det-card{
-    right: 10px!important;
+@media screen and (max-width: 320px) {
+  .product-page-det-card {
+    right: 10px !important;
     width: 280px;
   }
+}
+.footer-last ul {
+  display: flex;
+  gap: 15px;
+  color: #575656;
+  flex-wrap: wrap;
+  transition: 0.2s ease;
+}
+
+.footer-last ul li:hover {
+  color: #ffffff;
+}
+@media (min-width: 860px) and (max-width: 1140px) {
+  #footer {
+    justify-content: center;
   }
+}

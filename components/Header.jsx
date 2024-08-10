@@ -11,17 +11,32 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { modalActions } from "@/store/openModel";
+import { itemsActions } from "@/store/cartItems";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomToast from "./customToast";
 
 
 
 const Header = () => {
   const dispatch = useDispatch()
-  const items = useSelector((state) => state.itemsFn.items)
+  const addedItems = useSelector((state) => state.itemsFn.items)
   const stateMessage = useSelector((state) => state.itemsFn.message)
   const router = useRouter()
   const [isScrolled, setIsScrolled] = useState(false);
 
+  if (stateMessage === 'itemAdded') {
+    toast.success('Item added to cart', {
+      className: 'added-toast',
+      position: 'bottom-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+    })
+    dispatch(itemsActions.resetMessage())
+  }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -41,7 +56,6 @@ const Header = () => {
   const showCartModal = () => {
     dispatch(modalActions.openModal())
   }
-
   return (
     <>
       <header>
@@ -59,18 +73,34 @@ const Header = () => {
         )}
         <div className="separator"></div>
         <div className="header">
-          <h3>ALPHALETE</h3>
-          <div className="example05">
-            <Link style={{ padding: '0 10px' }} href="/"><p>MEN</p></Link>
-            <Link href="/"><p>WOMEN</p></Link>
-          </div>
-          <div>
-            <FaSearch />
-            <SlBag onClick={showCartModal} className="cart" />
-            <p className="p">1</p>
-            <RxHamburgerMenu color="white" className="burger" />
-          </div>
-        </div>
+  <h3
+    className="hover:cursor-pointer"
+    onClick={() => window.location.href = '/'}
+  >
+    ALPHALETE
+  </h3>
+  <div className="example05">
+    <p
+      style={{ padding: '0 10px', cursor: 'pointer' }}
+      onClick={() => window.location.href = '/'}
+    >
+      MEN
+    </p>
+    <p
+      style={{ cursor: 'pointer' }}
+      onClick={() => window.location.href = '/'}
+    >
+      WOMEN
+    </p>
+  </div>
+  <div>
+    <FaSearch />
+    <SlBag onClick={showCartModal} className="cart" />
+    <p>{addedItems.length}</p>
+    <RxHamburgerMenu color="white" className="burger" />
+  </div>
+</div>
+        <ToastContainer />
       </header>
     </>
   );
